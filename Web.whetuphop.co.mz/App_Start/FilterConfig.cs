@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Web.whetuphop.co.mz
+namespace Standarbank.jue.web
 {
     public class FilterConfig
     {

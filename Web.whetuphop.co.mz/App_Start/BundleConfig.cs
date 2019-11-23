@@ -1,13 +1,19 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Web.whetuphop.co.mz
+namespace Standarbank.jue.web
 {
     public class BundleConfig
     {
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.Add(new ScriptBundle("~/admin-lte/js").Include(
+             "~/admin-lte/js/adminlte.js",
+            "~/admin-lte/plugins/iCheck/icheck.js",
+            "~/admin-lte/plugins/input-mask/jquery.inputmask.js",
+            "~/admin-lte/plugins/input-mask/jquery.inputmask.date.extensions.js",
+            "~/admin-lte/plugins/input-mask/jquery.inputmask.extensions.js"));
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -24,7 +30,12 @@ namespace Web.whetuphop.co.mz
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/font-awesome.css",
+                      "~/admin-lte/css/AdminLTE.css",
+                      "~/admin-lte/css/alt/AdminLTE-select2.css",
+                      "~/admin-lte/css/skins/_all-skins.css",
+                      "~/admin-lte/plugins/iCheck/square/blue.css"));
         }
     }
 }

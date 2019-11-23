@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="whetushopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="enderecos">
+          <Key>
+            <PropertyRef Name="endereco_id" />
+          </Key>
+          <Property Name="endereco_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cidade" Type="varchar" MaxLength="50" />
+          <Property Name="avenida" Type="varchar" MaxLength="50" />
+          <Property Name="rua" Type="varchar" MaxLength="50" />
+          <Property Name="coordenadas_GoogleMap" Type="varchar" MaxLength="20" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="supermercados">
+          <Key>
+            <PropertyRef Name="supermercado_id" />
+          </Key>
+          <Property Name="supermercado_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="slug" Type="varchar" MaxLength="50" />
+          <Property Name="nome_completo" Type="varchar" MaxLength="20" />
+          <Property Name="nome_curto" Type="varchar" MaxLength="50" />
+          <Property Name="endereco_id" Type="int" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__supermerc__ender__4BAC3F29">
+          <End Role="enderecos" Type="Self.enderecos" Multiplicity="0..1" />
+          <End Role="supermercados" Type="Self.supermercados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="enderecos">
+              <PropertyRef Name="endereco_id" />
+            </Principal>
+            <Dependent Role="supermercados">
+              <PropertyRef Name="endereco_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="whetushopModelStoreContainer">
+          <EntitySet Name="enderecos" EntityType="Self.enderecos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="supermercados" EntityType="Self.supermercados" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__supermerc__ender__4BAC3F29" Association="Self.FK__supermerc__ender__4BAC3F29">
+            <End Role="enderecos" EntitySet="enderecos" />
+            <End Role="supermercados" EntitySet="supermercados" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="whetushopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="endereco">
+          <Key>
+            <PropertyRef Name="endereco_id" />
+          </Key>
+          <Property Name="endereco_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="avenida" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rua" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="coordenadas_GoogleMap" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="supermercados" Relationship="Self.FK__supermerc__ender__4BAC3F29" FromRole="enderecos" ToRole="supermercados" />
+        </EntityType>
+        <EntityType Name="supermercado">
+          <Key>
+            <PropertyRef Name="supermercado_id" />
+          </Key>
+          <Property Name="supermercado_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="slug" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nome_completo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nome_curto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="endereco_id" Type="Int32" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="endereco" Relationship="Self.FK__supermerc__ender__4BAC3F29" FromRole="supermercados" ToRole="enderecos" />
+        </EntityType>
+        <Association Name="FK__supermerc__ender__4BAC3F29">
+          <End Role="enderecos" Type="Self.endereco" Multiplicity="0..1" />
+          <End Role="supermercados" Type="Self.supermercado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="enderecos">
+              <PropertyRef Name="endereco_id" />
+            </Principal>
+            <Dependent Role="supermercados">
+              <PropertyRef Name="endereco_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="whetushopEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="enderecos" EntityType="Self.endereco" />
+          <EntitySet Name="supermercados" EntityType="Self.supermercado" />
+          <AssociationSet Name="FK__supermerc__ender__4BAC3F29" Association="Self.FK__supermerc__ender__4BAC3F29">
+            <End Role="enderecos" EntitySet="enderecos" />
+            <End Role="supermercados" EntitySet="supermercados" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="whetushopModelStoreContainer" CdmEntityContainer="whetushopEntities">
+          <EntitySetMapping Name="enderecos">
+            <EntityTypeMapping TypeName="whetushopModel.endereco">
+              <MappingFragment StoreEntitySet="enderecos">
+                <ScalarProperty Name="endereco_id" ColumnName="endereco_id" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="avenida" ColumnName="avenida" />
+                <ScalarProperty Name="rua" ColumnName="rua" />
+                <ScalarProperty Name="coordenadas_GoogleMap" ColumnName="coordenadas_GoogleMap" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="supermercados">
+            <EntityTypeMapping TypeName="whetushopModel.supermercado">
+              <MappingFragment StoreEntitySet="supermercados">
+                <ScalarProperty Name="supermercado_id" ColumnName="supermercado_id" />
+                <ScalarProperty Name="slug" ColumnName="slug" />
+                <ScalarProperty Name="nome_completo" ColumnName="nome_completo" />
+                <ScalarProperty Name="nome_curto" ColumnName="nome_curto" />
+                <ScalarProperty Name="endereco_id" ColumnName="endereco_id" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

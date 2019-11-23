@@ -1,14 +1,4 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
+﻿
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -17,8 +7,32 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+
+.login-logo a,
+.register-logo a {
+    color: #276c85;
 }
+
+login-logo,
+.register-logo {
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 300;
+}
+
+.search {
+    color: #08383f85;
+}
+
+.btn-whetushop {
+    color: #fff;
+    background-color: #0f5e5b;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+
+.logo{
+    padding: 0px;
+}
+

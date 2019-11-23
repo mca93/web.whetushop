@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="shortcut icon" href="~/admin-lte/img/favicon.ico" type="image/x-icon">
+   @Styles.Render("~/Content/css")
+   @Scripts.Render("~/bundles/modernizr")
+
+    <title>| @ViewBag.Title</title>
+</head>
+<body class="hold-transition skin-blue sidebar-mini" style="margin-top: 0; padding-top:0">
+    <div class="wrapper">
+
+        <!-- Header Navbar -->
+        @RenderSection("headerNavSection", required: false)
+    </div>
+    <section class="content container-fluid">
+
+        <!--------------------------
+         | Your Page Content Here |
+        -------------------------->
+        @RenderBody()
+
+    </section>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/admin-lte/js")
+</body>
+
+</html>
+

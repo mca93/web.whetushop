@@ -1,0 +1,7 @@
+﻿<li class="header">HEADER</li>
+<!-- Optionally, you can add icons to the links -->
+
+<li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Home" ? "active" : "")"><a href="#"><i class="fa fa-dashboard"></i> <span>Dashbords</span></a></li>
+<li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" || ViewContext.RouteData.Values["Action"].ToString() == "Show"? "active" : "")"><a href="/LetterOfCommitment/Index"><i class="fa fa-pencil-square"></i> <span>Manage LoCs</span></a></li>
+<li class="@(ViewContext.RouteData.Values["Action"].ToString() == "About" ? "active" : "")"><a href="/Home/About"><i class="fa fa-money"></i> <span>Manage Remittances</span></a></li>
+@*<li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Contact" ? "active" : "")">@Html.ActionLink("Contact", "Contact", "Home")</li>*@
